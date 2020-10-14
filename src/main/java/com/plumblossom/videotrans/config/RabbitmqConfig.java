@@ -45,7 +45,7 @@ public class RabbitmqConfig {
 
 
     // 设置视频处理机器并发处理数量
-    public static final int DEFAULT_CONCURRENT = 1;
+    public static final int DEFAULT_CONCURRENT = 5;
 
     @Bean("customContainerFactory")
     public SimpleRabbitListenerContainerFactory containerFactory(SimpleRabbitListenerContainerFactoryConfigurer configurer, ConnectionFactory connectionFactory) {
