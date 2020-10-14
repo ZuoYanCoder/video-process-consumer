@@ -58,6 +58,9 @@ public class M3U8CommandBuilder implements CommandBuilder {
         command.add("-c:a");
         command.add("copy");
 
+        command.add("-max_muxing_queue_size");
+        command.add("9999");
+
         // 设置每个片段的默认时间
         command.add("-hls_time");
         command.add(hls_time);

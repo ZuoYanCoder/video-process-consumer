@@ -24,7 +24,7 @@ public class TestVideoRabbitmq {
     RabbitTemplate rabbitTemplate;
 
 
-    @Test
+   /* @Test
     public void testProcessMessage(){
         String newFileName = "cutout-kuaiji";
         String storageFilePath = "C:\\SoftWare\\ProgramData\\UploadVideo\\cut\\";
@@ -33,7 +33,7 @@ public class TestVideoRabbitmq {
         String newVideoPath = storageFilePath + newFileName;
         String resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
         String processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
-        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
+//        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
 
         newFileName = "testing-video";
         storageFilePath = "C:\\SoftWare\\ProgramData\\UploadVideo\\testing\\";
@@ -42,7 +42,7 @@ public class TestVideoRabbitmq {
         newVideoPath = storageFilePath + newFileName;
         resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
         processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
-        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
+//        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
 
         newFileName = "test-2-video";
         storageFilePath = "C:\\SoftWare\\ProgramData\\UploadVideo\\test2\\";
@@ -51,7 +51,7 @@ public class TestVideoRabbitmq {
         newVideoPath = storageFilePath + newFileName;
         resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
         processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
-        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
+//        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
 
 
         newFileName = "test-3-video";
@@ -61,7 +61,7 @@ public class TestVideoRabbitmq {
         newVideoPath = storageFilePath + newFileName;
         resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
         processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
-        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
+//        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
 
 
         newFileName = "test-4-video";
@@ -71,7 +71,7 @@ public class TestVideoRabbitmq {
         newVideoPath = storageFilePath + newFileName;
         resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
         processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
-        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
+//        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
 
 
         newFileName = "test-5-video";
@@ -81,8 +81,8 @@ public class TestVideoRabbitmq {
         newVideoPath = storageFilePath + newFileName;
         resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
         processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
-        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
+//        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
 
 
-    }
+    }*/
 }

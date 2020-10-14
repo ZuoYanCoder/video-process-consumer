@@ -45,13 +45,15 @@ public class RabbitmqConfig {
 
 
     // 设置视频处理机器并发处理数量
-    public static final int DEFAULT_CONCURRENT = 5;
+    public static final int DEFAULT_CONCURRENT = 1;
 
     @Bean("customContainerFactory")
     public SimpleRabbitListenerContainerFactory containerFactory(SimpleRabbitListenerContainerFactoryConfigurer configurer, ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConcurrentConsumers(DEFAULT_CONCURRENT);
         factory.setMaxConcurrentConsumers(DEFAULT_CONCURRENT);
+        // 设置 prefetch count
+        factory.setPrefetchCount(new Integer(1));
         configurer.configure(factory, connectionFactory);
         return factory;
     }
