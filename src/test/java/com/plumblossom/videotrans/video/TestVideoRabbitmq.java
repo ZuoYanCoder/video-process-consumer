@@ -28,7 +28,7 @@ public class TestVideoRabbitmq {
     public void testProcessMessage() {
         String newFileName = "kuaiji";
         String storageFilePath = "C:\\SoftWare\\ProgramData\\UploadVideo\\kuaiji\\";
-        String sourceVideoPath = "C:\\SoftWare\\ProgramData\\UploadVideo\\kuaiji\\3.mp4";
+        String sourceVideoPath = "C:\\SoftWare\\ProgramData\\UploadVideo\\kuaiji\\1.mp4";
 
         String newVideoPath = storageFilePath + newFileName;
         String resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
