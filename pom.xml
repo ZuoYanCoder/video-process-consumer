@@ -77,7 +77,7 @@
     </dependencies>
 
     <build>
-        <finalName>video-process-mp4-265-hq</finalName>
+        <finalName>video-process-mp4-264-fluent</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
