@@ -44,6 +44,20 @@ public class TestVideoRabbitmq {
         processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
         rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO,"",processMP4);
     }
+
+    // 增加编码转换视频  判断推理-Source 视频
+    @Test
+    public void testProcessMessageTuiLi() {
+        String newFileName = "判断推理上";
+        String storageFilePath = "C:\\SoftWare\\ProgramData\\UploadVideo\\判断推理\\";
+        String sourceVideoPath = "C:\\SoftWare\\ProgramData\\UploadVideo\\判断推理\\判断推理-Source";
+
+        String newVideoPath = storageFilePath + newFileName;
+        String resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
+        String processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
+        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESS_VIDEO, "", processMP4);
+    }
+
     /*
         newFileName = "testing-video";
         storageFilePath = "C:\\SoftWare\\ProgramData\\UploadVideo\\testing\\";
