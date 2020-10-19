@@ -108,4 +108,5 @@ public class CommonConstValue {
      */
     public static final String KEY_VIDEO_PARAMS_STORAGE_FOLDER_PATH = "storage_folder_path";
 
+    public static final String KEY_VIDEO_PARAMS_VIDEO_ID = "video_id" ;
 }
