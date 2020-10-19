@@ -50,8 +50,7 @@ public class TestVideoRabbitmq {
     public void testProcessMessageTuiLi() {
         String newFileName = "判断推理上";
         String storageFilePath = "C:\\SoftWare\\ProgramData\\UploadVideo\\判断推理\\";
-        String sourceVideoPath = "C:\\SoftWare\\ProgramData\\UploadVideo\\判断推理\\判断推理-Source";
-
+        String sourceVideoPath = "C:\\SoftWare\\ProgramData\\UploadVideo\\判断推理\\判断推理-Source.mp4";
         String newVideoPath = storageFilePath + newFileName;
         String resolution = CommonConstValue.FLUENT_FOLDRE_NAME;
         String processMP4 = BuildVideProcessParam.buildProcessMP4Params(newFileName, storageFilePath, sourceVideoPath, newVideoPath, resolution);
