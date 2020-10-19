@@ -11,9 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -31,7 +34,8 @@ public class M3U8VideoProcessHandler {
     private static final String FILE_SUFFIX = ".m3u8";
 
 
-
+    @Autowired
+    RabbitTemplate rabbitTemplate;
 
     @RabbitListener(queues = {RabbitmqConfig.QUEUE_M3U8_H264_HQ},containerFactory = "customContainerFactory")
     public void receivedM3U8H264HQProcessTask(String msg, Message message, Channel channel) {
@@ -52,6 +56,31 @@ public class M3U8VideoProcessHandler {
         String result = videoTrans.hqTrans(params);
         // 记录结果
         log.info(msg + "[" + result + "]");
+
+
+        // 获取转码视频的Id
+        String videoId = (String) params.get(CommonConstValue.KEY_VIDEO_PARAMS_VIDEO_ID);
+        // 视频Id
+        Integer vId = new Integer(videoId);
+
+        Map<String, String> videoTransInfo = new HashMap<>();
+        videoTransInfo.put(CommonConstValue.KEY_VIDEO_PARAMS_VIDEO_ID, Integer.toString(vId));
+
+        videoTransInfo.put("video_type", "1");
+        videoTransInfo.put("video_Encode", "0");
+        videoTransInfo.put("video_resolution", "2");
+        videoTransInfo.put("video_storage_path", (String) params.get(CommonConstValue.KEY_VIDEO_PARAMS_NEW_VIDEO_PATH));
+
+        videoTransInfo.put("video_trans_status", "3");
+
+        if (result.equals("success")){
+            videoTransInfo.put("video_trans_status", "2");
+        }
+        videoTransInfo.put("video_trans_message", result);
+
+        String processStatus = JSON.toJSONString(videoTransInfo);
+
+        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_PROCESSED_STATUS, "",processStatus );
 
     }
 

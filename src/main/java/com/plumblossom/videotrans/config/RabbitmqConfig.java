@@ -39,10 +39,15 @@ public class RabbitmqConfig {
     public static final String QUEUE_MP4_H265_HD = "queue_mp4_h265_hd";
     public static final String QUEUE_MP4_H265_HQ = "queue_mp4_h265_hq";
 
+
+    // 定义视频处理完的消息队列
+    public static final String QUEUE_VIDEO_PROCESS_STATUS = "queue_video_process_status";
+
+
     // 定义处理消息的交换机
-//    public static final String EXCHANGE_ROUTING_VIDEO_INFORM = "exchange_routing_video";
     public static final String EXCHANGE_PROCESS_VIDEO = "exchange_process_video";
 
+    public static final String EXCHANGE_PROCESSED_STATUS = "exchange_process_status_video";
 
     // 设置视频处理机器并发处理数量
     public static final int DEFAULT_CONCURRENT = 1;
@@ -55,6 +60,16 @@ public class RabbitmqConfig {
         factory.setPrefetchCount(1);
         configurer.configure(factory, connectionFactory);
         return factory;
+    }
+
+
+    /**
+     * 定义视频处理完成的消息交换机
+     * @return
+     */
+    @Bean(EXCHANGE_PROCESSED_STATUS)
+    public Exchange EXCHANGE_PROCESSED_STATUS(){
+        return ExchangeBuilder.directExchange(EXCHANGE_PROCESS_VIDEO).durable(true).build();
     }
 
 
@@ -72,11 +87,16 @@ public class RabbitmqConfig {
         return ExchangeBuilder.fanoutExchange(EXCHANGE_PROCESS_VIDEO).durable(true).build();
     }
 
+    // 定义处理视频消息的消息队列
+    @Bean(QUEUE_VIDEO_PROCESS_STATUS)
+    public Queue QUEUE_VIDEO_PROCESS_STATUS(){
+        return new Queue(QUEUE_VIDEO_PROCESS_STATUS);
+    }
 
     // 定义消息队列
     @Bean(QUEUE_M3U8_H264_FLUENT)
     public Queue QUEUE_M3U8_H264_FLUENT(){
-       return new Queue(QUEUE_M3U8_H264_FLUENT);
+        return new Queue(QUEUE_M3U8_H264_FLUENT);
     }
 
     @Bean(QUEUE_M3U8_H264_HD)
@@ -143,6 +163,12 @@ public class RabbitmqConfig {
      * @return
      *
      */
+
+
+    @Bean
+    public Binding BINDING_QUEUE_VIDEO_PROCESS_STATUS(@Qualifier(QUEUE_VIDEO_PROCESS_STATUS) Queue queue, @Qualifier(EXCHANGE_PROCESSED_STATUS) Exchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with("").noargs();
+    }
 
     @Bean
     public Binding BINDING_QUEUE_M3U8_H264_FLUENT(@Qualifier(QUEUE_M3U8_H264_FLUENT) Queue queue, @Qualifier(EXCHANGE_PROCESS_VIDEO) Exchange exchange){
